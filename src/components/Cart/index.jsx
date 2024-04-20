@@ -6,8 +6,14 @@ import data from "./../../data"
 const Cart = () => {
   const [cart, setCart] = useState(data);
 
+  const deleteProduct  = (id)=>{
+    setCart((cart)=>{
+      return cart.filter((product)=>{ return id!==product.id })
+    })
+  }
+
   const products = cart.map((product)=>{
-    return <Product product={product} key={product.id} />
+    return <Product product={product} key={product.id} deleteProduct={deleteProduct} />
   })
 
   return (
